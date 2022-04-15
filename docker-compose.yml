@@ -272,6 +272,7 @@ services:
     command: /bin/sh
     tty: true
 
+#pipelines are defined locally in pipelines.yml so make sure you have it and map path according to your setup 
   logstash:
     image: docker.elastic.co/logstash/logstash:7.16.1
     container_name: logstash_1
@@ -281,13 +282,10 @@ services:
       TZ: 'Africa/Johannesburg'
       XPACK_MONITORING_ENABLED: 'false'
       LOG_LEVEL: 'debug'
-
     ports:
      - 9600:9600
-
     networks:
       - confluent
-
     volumes:
       - /opt/ansible/es_logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
 
